@@ -80,3 +80,28 @@ Les dépendances fonctionnelles permettent de définir une relation de dépendan
 
 - Les **entités** sont un ensemble de propriétés décrivant un objet du Système d'Information (SI) représentées par un rectangle dans les schémas.
 - L'**ID** d'une propriété est souligné et permet d'identifier de manière unique une entrée.
+
+## Cardinalité
+
+- Indique le nombre de fois qu'une occurrence d'une entité participe aux occurrences de la relation : minimum, maximum (n pour illimité)
+
+## Relations
+
+- **Porteuses** : Contiennent des propriétés.
+- **Binaire / Ternaire** : Type de relation en fonction du nombre d'entités impliquées.
+- **Flexive** : Une entité est reliée à elle-même.
+
+## Règles d'usage
+
+- Toute entité doit avoir un identifiant unique.
+- Toutes les propriétés d'une entité dépendent fonctionnellement de son identifiant.
+- Le nom d'une propriété ne doit apparaitre qu'une seule fois dans tout le MCD.
+
+## Identité
+
+- **Forte** : Indépendante, n'a pas besoin d'une autre entité pour exister.
+- **Faible** : Nécessite une association avec une autre entité pour être complète.
+
+## Contraintes d'intégrité fonctionnelle (CIF)
+
+- Une CIF est définie par le fait qu'une des entités de l'association est complètement déterminée par la connaissance d'une ou de plusieurs entités participant à l'association.
