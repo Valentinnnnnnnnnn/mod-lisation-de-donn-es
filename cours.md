@@ -105,3 +105,6 @@ Les dépendances fonctionnelles permettent de définir une relation de dépendan
 ## Contraintes d'intégrité fonctionnelle (CIF)
 
 - Une CIF est définie par le fait qu'une des entités de l'association est complètement déterminée par la connaissance d'une ou de plusieurs entités participant à l'association.
+
+# TP
+![alt text](image-2.png)
