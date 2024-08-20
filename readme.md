@@ -108,3 +108,13 @@ Les dépendances fonctionnelles permettent de définir une relation de dépendan
 
 # TP
 ![alt text](image-2.png)
+
+# Passage du MCD au MLD
+
+## Règles de transformation
+
+- **Absorption d'identifiant** : Lorsqu'une entité possède une cardinalité de type (1,1) ou (0,1), elle absorbe l'identifiant de l'entité liée ayant une cardinalité plus forte (0,n ou 1,n). Cet identifiant devient alors une clé étrangère dans l'entité qui absorbe.
+
+  - **Explication** : L'entité ayant une cardinalité maximale égale à 1 recevra l'identifiant (ou les identifiants) des entités avec des cardinalités maximales plus élevées.
+
+- **Entité intermédiaire** : Si les cardinalités maximales sont de type "n" des deux côtés d'une relation, une nouvelle entité intermédiaire est créée pour contenir les clés étrangères des deux entités concernées.
