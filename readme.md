@@ -121,7 +121,7 @@ Les dépendances fonctionnelles permettent de définir une relation de dépendan
 
 # Passage du MLD au MPD
 Il faut passer par un shéma relationnel pour le traduire en script sql.
-En fonction du sgbd choisi, il faut adapté la nomenclature.
+En fonction du sgbd choisi, il faut adapter la nomenclature.
 
 
 # Exos
@@ -181,3 +181,6 @@ CREATE TABLE ventes (
     FOREIGN KEY (prix_kg) REFERENCES prix(prix_kg)
 );
 
+# 2 
+![alt text](image-6.png)
+![alt text](image-8.png)
