@@ -126,7 +126,7 @@ En fonction du sgbd choisi, il faut adapter la nomenclature.
 
 # Exos
 
-## Régles de nomenclature pour tous les exos :
+## Régles de nomenclature pour tous les exos (avec MariaDB):
 - noms en minuscules avec des underscores pour les espaces
 - pas de caractère spéciaux
 - pas d'accents
@@ -149,6 +149,7 @@ Le choix de lier l'entité Prix à l'entité Ventes permet de conserver le prix 
 - prix(<u>prix_kg</u>)
  
 ## Script SQL
+```sql
 CREATE TABLE types (
     type_name CHAR(30) PRIMARY KEY
 );
@@ -180,7 +181,82 @@ CREATE TABLE ventes (
     FOREIGN KEY (produit_id) REFERENCES produits(produit_id),
     FOREIGN KEY (prix_kg) REFERENCES prix(prix_kg)
 );
-
+```
 # 2 
 ![alt text](image-6.png)
 ![alt text](image-8.png)
+
+# 3
+Dictionnaire
+![Dictionnaire](image-10.png)
+
+MCD
+![MCD](image-9.png)
+
+MLD
+![MLD](image-11.png)
+
+MLDR
+
+- clients(<u>client_id</u>, nom_client, prenom_client, telephone_client, email_client, adresse_client, ville_client, code_postal_client)
+
+- materiel(<u>materiel_id</u>, sn_materiel, libelle_materiel, type_materiel, #client_id, #vente_id)
+
+- tarifs(<u>type_intervention</u>, prix_horaire)
+
+- interventions(<u>intervention_id</u>, date_debut, date_fin, resume_intervention, #type_intervention, #client_id, #materiel_id)
+
+- ventes(<u>vente_id</u>, date_vente, prix_vente, #intervention_id, #materiel_id)
+
+MPD
+``` sql
+CREATE TABLE clients (
+    client_id INT AUTO_INCREMENT PRIMARY KEY,
+    nom_client VARCHAR(30) NOT NULL,
+    prenom_client VARCHAR(30) NOT NULL,
+    telephone_client VARCHAR(12),
+    email_client VARCHAR(30) NOT NULL,
+    adresse_client VARCHAR(50),
+    ville_client VARCHAR(30),
+    code_postal_client VARCHAR(5)
+);
+
+CREATE TABLE materiel (
+    materiel_id INT AUTO_INCREMENT PRIMARY KEY,
+    sn_materiel VARCHAR(50) NOT NULL,
+    libelle_materiel VARCHAR(30) NOT NULL,
+    type_materiel VARCHAR(30),
+    client_id INT NOT NULL,
+    vente_id INT,
+    FOREIGN KEY (client_id) REFERENCES clients(client_id),
+    FOREIGN KEY (vente_id) REFERENCES ventes(vente_id)
+);
+
+CREATE TABLE tarifs (
+    type_intervention VARCHAR(50) PRIMARY KEY,
+    prix_horaire DECIMAL(5, 2) NOT NULL
+);
+
+CREATE TABLE interventions (
+    intervention_id INT AUTO_INCREMENT PRIMARY KEY,
+    date_debut DATE NOT NULL,
+    date_fin DATE NOT NULL,
+    resume_intervention TEXT,
+    type_intervention VARCHAR(50),
+    client_id INT NOT NULL,
+    materiel_id INT NOT NULL,
+    FOREIGN KEY (type_intervention) REFERENCES tarifs(type_intervention),
+    FOREIGN KEY (client_id) REFERENCES clients(client_id),
+    FOREIGN KEY (materiel_id) REFERENCES materiel(materiel_id)
+);
+
+CREATE TABLE ventes (
+    vente_id INT AUTO_INCREMENT PRIMARY KEY,
+    date_vente DATE NOT NULL,
+    prix_vente DECIMAL(5, 2) NOT NULL,
+    intervention_id INT,
+    materiel_id INT NOT NULL,
+    FOREIGN KEY (intervention_id) REFERENCES interventions(intervention_id),
+    FOREIGN KEY (materiel_id) REFERENCES materiel(materiel_id)
+);
+```
